@@ -1,5 +1,50 @@
 @import '@/assets/scss/_main';
 
 .login {
-    background-color: $azul;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.content-login {
+    width: 400px;
+    height: 400px;
+    background-color: $blue;
+    border-radius: 9px;
+    display: flex;
+    // para alinhar em coluna
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        h1 {
+            color: $white;
+            font-size: 28px;
+        }
+    }
+
+    .form {
+        margin-top: 20px;
+
+        label {
+            color: $white;
+        }
+
+        button {
+            background-color: $orange;
+
+            border-color: $orange;
+        }
+        button:hover {
+            background-color: $orange-light;
+        }
+
+
+
+    }
 }

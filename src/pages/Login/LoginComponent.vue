@@ -1,21 +1,41 @@
 <template>
-    <div class="login">
-
-        <div class="info">
-            <h1>Login do Sistema</h1>
-            <p>E-mail</p>
+    <div class="main">
+        <div class="login">
+            <div class="content-login">
+                <header>
+                    <h1>Login do Sistema</h1>
+                </header>
+                <div class="form">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">E-mail</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Senha</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                        </div>
+                        <button type="submit" class="btn btn-primary" v-on:click.prevent="login" >Entrar</button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div class="footer">
-            <p>Rodape</p>
-        </div>
-        
     </div>
 </template>
 
 <script>
 export default {
-    
+    name: 'LoginComponent',
+    data(){
+        return {
+
+        }
+    },
+    methods: {
+        login(){
+            this.$router.push({name:'home'});
+        }
+    }
 }
 </script>
 
