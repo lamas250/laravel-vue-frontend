@@ -11,7 +11,7 @@
         </div>
         <div class="menu">
             <ul>
-                <li><router-link :to="{name:'home'}"><i class="fa fa-home"></i> Início</router-link></li>
+                <li><router-link :to="{name:'home'}"><i class="fa fa-home"></i> Home</router-link></li>
                 <li><router-link :to="{name:'products'}"><i class="fa fa-box"></i> Produtos</router-link></li>
                 <li><router-link :to="{name:'home'}"><i class="fa fa-store"></i> Vendas</router-link></li>
                 <li><router-link :to="{name:'home'}"><i class="fa fa-chart-bar"></i> Relatório</router-link></li>
