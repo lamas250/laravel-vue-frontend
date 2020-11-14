@@ -6,7 +6,10 @@
             <div slot="slot-pages" class="content-pages">
                 <header class="title-pages">
                     <p>Clientes</p>
-                      <AddClient></AddClient>
+                        <AddClient 
+                            :form="form"
+                            @onFormSubmit="onFormSubmit"
+                        ></AddClient>
                 </header>
                 <div class="row">
                     <div class="col-12 col-md-12">
@@ -43,6 +46,7 @@ export default {
         return {
             clients: [],
             loader: false,
+            form: {name: '', email: '', phone: '',isEdit: false},
         }
     },
     mounted() {
@@ -66,6 +70,24 @@ export default {
             .catch(e => {
                 alert(e);
             });
+        },
+        onFormSubmit(data){
+            console.log(data.isEdit);
+            if(data.isEdit){
+                // call edit client
+                
+            }else{
+                // call create client
+                axios.post('/clients/store',{
+                    name: data.name,
+                    email: data.email,
+                    phone: data.phone
+                }).then(() => {
+                    this.getClients();
+                }).catch(e => {
+                    alert(e);
+                });
+            }
         }
     },
  
