@@ -3,23 +3,24 @@
         <div class="top">
             <p><strong class="mr-3">Clientes</strong><span class="badge badge-info">{{ data.length }}</span></p>
         </div>
+
         <div class="content">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Telefone</th>
+                        <th scope="col">{{ columns[0] }}</th>
+                        <th scope="col">{{ columns[1] }}</th>
+                        <th v-if="columns[2]">{{columns[2]}}</th>
                         <th >Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="value in data" :key="value.id">
-                        <th scope="row">{{ value.id }}</th>
+                    <tr v-for="(value, index) in data" :key="value.id">
+                        <th scope="row">{{ index + 1 }}</th>
                         <td>{{value.name}}</td>
-                        <td>{{ value.email }}</td>
-                        <td>{{value.phone }}</td>
+                        <td>{{ value.price }}</td>
+                        <td v-if="columns[2]">{{value.phone }}</td>
                         <td>
                             <button @click.prevent="onEdit(value)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                             <button @click.prevent="onDelete(value.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
@@ -37,6 +38,7 @@ export default {
     name: 'ListaModulo',
     props: {
         data: Array,
+        columns: Array,
     },
     methods: {
         onDelete(value){

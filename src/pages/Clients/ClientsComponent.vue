@@ -16,6 +16,7 @@
                         <Loader v-if='loader'/>
                         <ListaModulo 
                             :data='clients'
+                            :columns="['Nome','E-mail','Telefone']"
                             @onDelete="onDelete"
                             @onEdit="onEdit"
                         ></ListaModulo>
