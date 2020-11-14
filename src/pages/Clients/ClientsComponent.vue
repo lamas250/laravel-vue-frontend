@@ -17,6 +17,7 @@
                         <ListaModulo 
                             :data='clients'
                             @onDelete="onDelete"
+                            @onEdit="onEdit"
                         ></ListaModulo>
                     </div>
                 </div>
@@ -71,11 +72,27 @@ export default {
                 alert(e);
             });
         },
+        onEdit(data){
+            this.form = data;
+            this.form.isEdit = true;
+        },
+        editClient(data){
+            axios.put(`/clients/${data.id}`,{
+                name: data.name,
+                email: data.email,
+                phone: data.phone
+            }).then(() => {
+                this.getClients();
+            }).catch(e => {
+                alert(e);
+            })
+        },
         onFormSubmit(data){
-            console.log(data.isEdit);
+            // console.log(data.isEdit);
             if(data.isEdit){
                 // call edit client
-                
+                // console.log(data.name);
+                this.editClient(data);
             }else{
                 // call create client
                 axios.post('/clients/store',{
@@ -88,7 +105,8 @@ export default {
                     alert(e);
                 });
             }
-        }
+        },
+        
     },
  
 }

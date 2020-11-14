@@ -22,7 +22,7 @@
                         :value="form.phone"/>
                 </div>
                 <div class="col-12 col-md-1" style="text-align: right;">
-                    <button type="submit" @click="onFormSubmit" class="btn btn-info btn-sm">Criar</button>
+                    <button type="submit" :class="btnClass" @click="onFormSubmit" >{{ btnName }}</button>
                 </div>
             </div>
         </form>        
@@ -32,29 +32,39 @@
 <script>
 export default {
     name: 'AddClient',
+    data() {
+        return {
+            btnName: "Salvar",
+            btnClass: "btn btn-info btn-sm",
+        };
+    },
     props: {
         form: {
             type: Object
         }
     },
     methods: {
-      handleChange(event){
+        handleChange(event){
           const { name, value } = event.target;
           let form = this.form;
           form[name] = value;
           this.form = form;
-      },
-      onFormSubmit(e) {
-          e.preventDefault();
+        },
+        onFormSubmit(event) {
+            event.preventDefault();
 
-          if(this.formValidation()){
-            //   console.log(this.form);
-            this.$emit("onFormSubmit", this.form);
+            if(this.formValidation()){
+                //   console.log(this.form);
+                this.$emit("onFormSubmit", this.form);
 
-            this.clearFilds();
-          }
-      },
-      formValidation(){
+                // change the button to save
+                this.btnName = "Salvar";
+                this.btnClass = "btn btn-info btn-sm";
+
+                this.clearFilds();
+            }
+        },
+        formValidation(){
           if(document.getElementsByName('name')[0].value === ""){
               alert("Escreva um nome");
               return false;
@@ -68,18 +78,26 @@ export default {
               return false;
           }
           return true;
-      },
-      clearFilds(){
-        //clear form data
-        this.form.name = "";
-        this.form.email = "";
-        this.form.phone = "";
-        this.form.isEdit = false;
+        },
+        clearFilds(){
+            //clear form data
+            this.form.name = "";
+            this.form.email = "";
+            this.form.phone = "";
+            this.form.isEdit = false;
 
-        //clear form filds
-        document.querySelector(".form").reset();
-      }
+            //clear form filds
+            document.querySelector(".form").reset();
+        },
+        updated(){
+            if(this.form.isEdit){
+                console.log('teste');
+                this.btnName = "Ediar",
+                this.btnClass = "btn btn-warning btn-sm"
+            }
+        }
     },
+
 }
 </script>
 

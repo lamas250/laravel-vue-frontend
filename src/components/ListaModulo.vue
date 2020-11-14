@@ -21,6 +21,7 @@
                         <td>{{ value.email }}</td>
                         <td>{{value.phone }}</td>
                         <td>
+                            <button @click.prevent="onEdit(value)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                             <button @click.prevent="onDelete(value.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
@@ -40,6 +41,9 @@ export default {
     methods: {
         onDelete(value){
             this.$emit("onDelete", value);
+        },
+        onEdit(value){
+            this.$emit("onEdit", value);
         }
     },
 }
